@@ -1,12 +1,14 @@
-import { CreateQuery } from "mongoose";
+import { CreateQuery, FilterQuery } from "mongoose";
 import PetModel, { Pet } from "../models/pet.model";
 
-async function CreatePet(input: CreateQuery<Pet>): Promise<Pet> {
+export async function createPet(input: CreateQuery<Pet>): Promise<Pet> {
   const pet = await PetModel.create(input);
 
   return pet;
 }
 
-export default {
-  CreatePet,
-};
+export async function getPetGreeting(input: FilterQuery<Pet>): Promise<string> {
+  const pet = await PetModel.findOne(input);
+
+  return pet.greeting;
+}

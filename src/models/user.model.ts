@@ -35,6 +35,10 @@ export class User {
   // Embedded sub doccument
   @prop({ type: () => Address })
   address: Address;
+
+  public get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
 }
 
 const UserModel = getModelForClass(User);
